@@ -155,8 +155,6 @@ describe Assignment do
             expect(User.find_by username: "joesmith").to be_nil
             assignment.create_user(:username=> 'joesmith', :password_digest=>'xxx')
             testUser = User.find_by username: 'joesmith'
-            p User.find_by username: 'joesmith'
-            p User.create(:username=> 'joesmith', :password_digest=>'xxx')
             expect(testUser.id).not_to be_nil
             expect(testUser.username).to eq "joesmith"
             expect(testUser.password_digest).to eq "xxx"
