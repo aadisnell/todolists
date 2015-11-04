@@ -274,6 +274,7 @@ describe "Assignment" do
           TodoList.create(:list_name=>"my list #{i}", :list_due_date=>dateTrack, :user_id=>user.id)
         end
         todoListGroup = TodoList.all
+        p todoListGroup
         # test that results are sorted by updated_at and are ascending
         lastTime = Date.today
         todoListGroup.each do |t| 
