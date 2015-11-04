@@ -1,23 +1,27 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#Reinit seed
+User.destroy_all
+TodoList.destroy_all
+TodoItem.destroy_all
+Profile.destroy_all
 
-User.create!(username: 'Fiorina', password_digest: 'password')
-User.create!(username: 'Trump', password_digest: 'password')
-User.create!(username: 'Carson', password_digest: 'password')
-User.create!(username: 'Clinton', password_digest: 'password')
+Profile.create!([
+				 {gender: 'female', birth_year: 1954, first_name: "Carly", last_name: "Fiorina"},
+				 {gender: 'male', birth_year: 1946, first_name: "Donald", last_name: "Trump"},
+				 {gender: 'male', birth_year: 1951, first_name: "Ben", last_name: "Carson"},
+				 {gender: 'female', birth_year: 1947, first_name: "Hillary", last_name: "Clinton"}])
 
-Profile.create!(gender: 'female', birth_year: 1954, first_name: "Carly", last_name: "Fiorina")
-Profile.create!(gender: 'male', birth_year: 1946, first_name: "Donald", last_name: "Trump")
-Profile.create!(gender: 'male', birth_year: 1951, first_name: "Ben", last_name: "Carson")
-Profile.create!(gender: 'female', birth_year: 1947, first_name: "Hillary", last_name: "Clinton")
+profiles = Profile.all
+due_date = Date.today + 1.year
 
-TodoList.create!(list_name:"Cat", list_due_date: 1.year)
-
-(1...5).each do |i|
-	TodoItem.create!(due_date: 1.year, title: "Dog #{i}", description: "Catdog")
+profiles.each do |profile|
+	profile.create_user(username: 		 'profile.last_name'
+						password_digest: 'password' )
+	profile.user.todo_lists.create!(list_name: "#{profile.username}'s list",
+									list_due_date: due_date)
+	5.times.do
+		profile.user.todo_lists.last.todo_items.create(due_date:     due_date,
+													   title:       "Cat",
+													   description: "Dog")
+	end
 end
+

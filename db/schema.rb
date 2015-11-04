@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104065525) do
+ActiveRecord::Schema.define(version: 20151104084225) do
 
   create_table "assignments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -25,7 +25,12 @@ ActiveRecord::Schema.define(version: 20151104065525) do
     t.string   "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id_id"
+    t.integer  "user_id"
   end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+  add_index "profiles", ["user_id_id"], name: "index_profiles_on_user_id_id"
 
   create_table "todo_items", force: :cascade do |t|
     t.date     "due_date"
