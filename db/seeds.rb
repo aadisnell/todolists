@@ -6,10 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!(username: 'Fiorina', encrypted_password: 'password')
-User.create!(username: 'Trump', encrypted_password: 'password')
-User.create!(username: 'Carson', encrypted_password: 'password')
-User.create!(username: 'Clinton', encrypted_password: 'password')
+User.create!(username: 'Fiorina', password_digest: 'password')
+#User.first.profile.build(gender: 'female', birth_year: 1954, first_name: "Carly", last_name: "Fiorina")
+User.create!(username: 'Trump', password_digest: 'password')
+User.create!(username: 'Carson', password_digest: 'password')
+User.create!(username: 'Clinton', password_digest: 'password')
 
 Profile.create!(gender: 'female', birth_year: 1954, first_name: "Carly", last_name: "Fiorina")
 Profile.create!(gender: 'male', birth_year: 1946, first_name: "Donald", last_name: "Trump")
