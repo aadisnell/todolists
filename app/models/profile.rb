@@ -10,18 +10,8 @@ class Profile < ActiveRecord::Base
 		end
 	end
 
-	#Last name ok, first nil
-	def first_nil
-		if !first_name && !last_name
-			errors.add(:last_name, "First and last name cannot be null")
-		end
-	end
-
-	#Last name nil, first ok
-	def last_nil
-		if !first_name && !last_name
-			errors.add(:last_name, "First and last name cannot be null")
-		end
+	def self.get_all_profiles(startYear, endYear)
+		where("birth_year BETWEEN #{startYear} AND #{endYear}").order(birth_year: :asc)
 	end
 
 end
