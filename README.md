@@ -358,7 +358,7 @@ any `User` removed.
     ```shell
     $ rspec -e rq13
     ```
-14. Add a method to the `Profile` class, called `get_all_profiles`, which:
+14. Add a **class** method to the `Profile` class, called `get_all_profiles`, which:
  
     * accepts a min and max for the `birth year`
     * issues a `BETWEEN` SQL clause in a `where` clause to locate `Profiles` 
