@@ -4,12 +4,13 @@ class TodoListsController < ApplicationController
   # GET /todo_lists
   # GET /todo_lists.json
   def index
-    @todo_lists = current_user.todo_lists.paginate(page:params[:page], per_page: 8)
+    @todo_lists = TodoList.paginate(page:params[:page], per_page: 8)
   end
 
   # GET /todo_lists/1
   # GET /todo_lists/1.json
   def show
+    @todo_list = current_user.todo_lists
   end
 
   # GET /todo_lists/new
